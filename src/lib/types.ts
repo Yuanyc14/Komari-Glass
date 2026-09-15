@@ -5,6 +5,7 @@ export interface ThemeSettings {
   assetCurrency?: AssetCurrency;
   enableBlur?: boolean;
   glassOpacity?: number;
+  textDarkness?: number;
   backgroundImage?: string;
   showStatsBar?: boolean;
   showOnline?: boolean;

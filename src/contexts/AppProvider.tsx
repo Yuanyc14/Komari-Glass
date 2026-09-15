@@ -71,6 +71,20 @@ const LOAD_METRIC_KEYS = [
   "net.out.rate",
 ] as const;
 
+function darkenHex(color: string, percentage: number): string {
+  const factor = 1 - Math.min(100, Math.max(0, percentage)) / 100;
+  const channels = color
+    .replace("#", "")
+    .match(/.{2}/g)
+    ?.map((channel) =>
+      Math.round(Number.parseInt(channel, 16) * factor)
+        .toString(16)
+        .padStart(2, "0")
+    );
+
+  return channels ? `#${channels.join("")}` : color;
+}
+
 function getRetentionHours(
   definitions: MetricDefinition[],
   names: readonly string[]
@@ -273,6 +287,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     root.dataset.blur = settings.enableBlur ? "on" : "off";
 
+    if (resolvedTheme === "light") {
+      root.style.setProperty(
+        "--foreground",
+        darkenHex("#11191f", settings.textDarkness)
+      );
+      root.style.setProperty(
+        "--card-foreground",
+        darkenHex("#11191f", settings.textDarkness)
+      );
+      root.style.setProperty(
+        "--muted-foreground",
+        darkenHex("#59666f", settings.textDarkness)
+      );
+    } else {
+      root.style.removeProperty("--foreground");
+      root.style.removeProperty("--card-foreground");
+      root.style.removeProperty("--muted-foreground");
+    }
+
     const opacity = settings.glassOpacity / 100;
     root.style.setProperty("--glass-opacity", opacity.toFixed(2));
     root.style.setProperty(
@@ -292,6 +325,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     settings.backgroundImage,
     settings.enableBlur,
     settings.glassOpacity,
+    settings.textDarkness,
   ]);
 
   // Komari's admin node list stores its drag-and-drop order in `weight`.

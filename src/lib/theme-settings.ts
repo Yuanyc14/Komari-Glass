@@ -12,6 +12,7 @@ const DEFAULT_THEME_SETTINGS: Required<
     | "assetCurrency"
     | "enableBlur"
     | "glassOpacity"
+    | "textDarkness"
     | "backgroundImage"
     | "showStatsBar"
     | "showOnline"
@@ -28,6 +29,7 @@ const DEFAULT_THEME_SETTINGS: Required<
   assetCurrency: "CNY",
   enableBlur: true,
   glassOpacity: 60,
+  textDarkness: 70,
   backgroundImage: "",
   showStatsBar: true,
   showOnline: true,
@@ -59,6 +61,10 @@ export function mergeThemeSettings(
     glassOpacity: percent(
       src.glassOpacity,
       DEFAULT_THEME_SETTINGS.glassOpacity
+    ),
+    textDarkness: percent(
+      src.textDarkness,
+      DEFAULT_THEME_SETTINGS.textDarkness
     ),
     backgroundImage: String(
       src.backgroundImage ?? DEFAULT_THEME_SETTINGS.backgroundImage
