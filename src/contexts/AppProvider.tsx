@@ -272,7 +272,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
 
     root.dataset.blur = settings.enableBlur ? "on" : "off";
-  }, [resolvedTheme, settings.backgroundImage, settings.enableBlur]);
+
+    const opacity = settings.glassOpacity / 100;
+    root.style.setProperty("--glass-opacity", opacity.toFixed(2));
+    root.style.setProperty(
+      "--glass-hover-opacity",
+      Math.min(1, opacity + 0.08).toFixed(2)
+    );
+    root.style.setProperty(
+      "--glass-control-opacity",
+      Math.min(1, opacity + 0.04).toFixed(2)
+    );
+    root.style.setProperty(
+      "--glass-data-opacity",
+      (opacity * 0.08).toFixed(3)
+    );
+  }, [
+    resolvedTheme,
+    settings.backgroundImage,
+    settings.enableBlur,
+    settings.glassOpacity,
+  ]);
 
   // Komari's admin node list stores its drag-and-drop order in `weight`.
   const nodes = useMemo(

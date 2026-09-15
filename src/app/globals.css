@@ -23,14 +23,18 @@
   --signal-3: #a3e635;
   --signal-4: #facc15;
   --signal-5: #f43f5e;
+  --glass-opacity: 0.6;
+  --glass-hover-opacity: 0.68;
+  --glass-control-opacity: 0.64;
+  --glass-data-opacity: 0.048;
   --glass-shadow: 0 10px 32px rgb(31 48 58 / 0.09),
     inset 0 1px 0 rgb(255 255 255 / 0.58);
-  --glass-control: rgb(242 246 247 / 0.78);
-  --node-card-bg: rgb(241 245 249 / 0.74);
-  --node-card-hover: rgb(248 250 252 / 0.8);
+  --glass-control: rgb(242 246 247 / var(--glass-control-opacity));
+  --node-card-bg: rgb(241 245 249 / var(--glass-opacity));
+  --node-card-hover: rgb(248 250 252 / var(--glass-hover-opacity));
   --node-card-border: rgb(226 232 240 / 0.68);
   --node-card-shadow: 0 8px 28px rgb(15 23 42 / 0.18);
-  --node-data-bg: rgb(100 116 139 / 0.055);
+  --node-data-bg: rgb(100 116 139 / var(--glass-data-opacity));
   --node-offline-bg: rgb(255 255 255 / 0.2);
 }
 
@@ -57,12 +61,12 @@
   --signal-5: #fb7185;
   --glass-shadow: 0 12px 36px rgb(0 0 0 / 0.28),
     inset 0 1px 0 rgb(255 255 255 / 0.035);
-  --glass-control: rgb(30 36 37 / 0.82);
-  --node-card-bg: rgb(10 14 22 / 0.82);
-  --node-card-hover: rgb(10 14 22 / 0.9);
+  --glass-control: rgb(30 36 37 / var(--glass-control-opacity));
+  --node-card-bg: rgb(10 14 22 / var(--glass-opacity));
+  --node-card-hover: rgb(10 14 22 / var(--glass-hover-opacity));
   --node-card-border: rgb(255 255 255 / 0.18);
   --node-card-shadow: 0 8px 30px rgb(0 0 0 / 0.48);
-  --node-data-bg: rgb(148 163 184 / 0.065);
+  --node-data-bg: rgb(148 163 184 / var(--glass-data-opacity));
   --node-offline-bg: rgb(0 0 0 / 0.2);
 }
 

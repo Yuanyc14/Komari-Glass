@@ -2,7 +2,7 @@
   "name": "Komari Glass",
   "short": "Glass",
   "description": "一个轻量的Komari主题。",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "author": "mengying",
   "url": "https://github.com/imengying/Komari-Glass",
   "preview": "dist/preview.png",
@@ -54,6 +54,19 @@
         },
         "type": "switch",
         "default": true
+      },
+      {
+        "key": "glassOpacity",
+        "name": {
+          "zh-CN": "毛玻璃不透明度 (%)",
+          "en": "Glass Opacity (%)"
+        },
+        "type": "number",
+        "default": 60,
+        "help": {
+          "zh-CN": "范围 0–100；数值越低越通透。统一调整总览、服务器卡片和内部信息块。",
+          "en": "Range 0–100. Lower values are more transparent and apply to overview, server cards, and inner panels."
+        }
       },
       {
         "key": "backgroundImage",

@@ -4,6 +4,7 @@ export interface ThemeSettings {
   defaultAppearance?: "system" | "light" | "dark";
   assetCurrency?: AssetCurrency;
   enableBlur?: boolean;
+  glassOpacity?: number;
   backgroundImage?: string;
   showStatsBar?: boolean;
   showOnline?: boolean;

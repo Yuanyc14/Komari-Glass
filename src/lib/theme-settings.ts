@@ -11,6 +11,7 @@ const DEFAULT_THEME_SETTINGS: Required<
     | "defaultAppearance"
     | "assetCurrency"
     | "enableBlur"
+    | "glassOpacity"
     | "backgroundImage"
     | "showStatsBar"
     | "showOnline"
@@ -26,6 +27,7 @@ const DEFAULT_THEME_SETTINGS: Required<
   defaultAppearance: "system",
   assetCurrency: "CNY",
   enableBlur: true,
+  glassOpacity: 60,
   backgroundImage: "",
   showStatsBar: true,
   showOnline: true,
@@ -54,6 +56,10 @@ export function mergeThemeSettings(
       DEFAULT_THEME_SETTINGS.assetCurrency
     ),
     enableBlur: bool(src.enableBlur, DEFAULT_THEME_SETTINGS.enableBlur),
+    glassOpacity: percent(
+      src.glassOpacity,
+      DEFAULT_THEME_SETTINGS.glassOpacity
+    ),
     backgroundImage: String(
       src.backgroundImage ?? DEFAULT_THEME_SETTINGS.backgroundImage
     ),
@@ -89,6 +95,13 @@ function normalizeAssetCurrency(
 function bool(value: unknown, fallback: boolean): boolean {
   if (typeof value === "boolean") return value;
   return fallback;
+}
+
+function percent(value: unknown, fallback: number): number {
+  if (value === null || value === undefined || value === "") return fallback;
+  const parsed = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.min(100, Math.max(0, parsed));
 }
 
 function normalizeAppearance(
