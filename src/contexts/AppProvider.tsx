@@ -71,18 +71,22 @@ const LOAD_METRIC_KEYS = [
   "net.out.rate",
 ] as const;
 
-function darkenHex(color: string, percentage: number): string {
-  const factor = 1 - Math.min(100, Math.max(0, percentage)) / 100;
-  const channels = color
-    .replace("#", "")
-    .match(/.{2}/g)
-    ?.map((channel) =>
-      Math.round(Number.parseInt(channel, 16) * factor)
-        .toString(16)
-        .padStart(2, "0")
-    );
+function mixHex(color: string, target: string, percentage: number): string {
+  const amount = Math.min(100, Math.max(0, percentage)) / 100;
+  const sourceChannels = color.replace("#", "").match(/.{2}/g);
+  const targetChannels = target.replace("#", "").match(/.{2}/g);
 
-  return channels ? `#${channels.join("")}` : color;
+  if (!sourceChannels || !targetChannels) return color;
+
+  const channels = sourceChannels.map((channel, index) => {
+    const sourceValue = Number.parseInt(channel, 16);
+    const targetValue = Number.parseInt(targetChannels[index], 16);
+    return Math.round(sourceValue + (targetValue - sourceValue) * amount)
+      .toString(16)
+      .padStart(2, "0");
+  });
+
+  return `#${channels.join("")}`;
 }
 
 function getRetentionHours(
@@ -286,25 +290,24 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
 
     root.dataset.blur = settings.enableBlur ? "on" : "off";
+    root.dataset.textBold = settings.enableTextBold ? "on" : "off";
 
-    if (resolvedTheme === "light") {
-      root.style.setProperty(
-        "--foreground",
-        darkenHex("#11191f", settings.textDarkness)
-      );
-      root.style.setProperty(
-        "--card-foreground",
-        darkenHex("#11191f", settings.textDarkness)
-      );
-      root.style.setProperty(
-        "--muted-foreground",
-        darkenHex("#59666f", settings.textDarkness)
-      );
-    } else {
-      root.style.removeProperty("--foreground");
-      root.style.removeProperty("--card-foreground");
-      root.style.removeProperty("--muted-foreground");
-    }
+    const isDark = resolvedTheme === "dark";
+    const contrastTarget = isDark ? "#ffffff" : "#000000";
+    const foregroundBase = isDark ? "#f3f6f5" : "#11191f";
+    const mutedForegroundBase = isDark ? "#9fa9a7" : "#59666f";
+    root.style.setProperty(
+      "--foreground",
+      mixHex(foregroundBase, contrastTarget, settings.textDarkness)
+    );
+    root.style.setProperty(
+      "--card-foreground",
+      mixHex(foregroundBase, contrastTarget, settings.textDarkness)
+    );
+    root.style.setProperty(
+      "--muted-foreground",
+      mixHex(mutedForegroundBase, contrastTarget, settings.textDarkness)
+    );
 
     const opacity = settings.glassOpacity / 100;
     root.style.setProperty("--glass-opacity", opacity.toFixed(2));
@@ -324,6 +327,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     resolvedTheme,
     settings.backgroundImage,
     settings.enableBlur,
+    settings.enableTextBold,
     settings.glassOpacity,
     settings.textDarkness,
   ]);
@@ -401,3 +405,4 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
+
