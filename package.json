@@ -1,6 +1,6 @@
 {
   "name": "komari-theme-glass",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "private": true,
   "description": "一个轻量的Komari主题。",
   "homepage": "https://github.com/imengying/Komari-Glass",
@@ -42,3 +42,4 @@
     "postcss": "^8.5.26"
   }
 }
+
