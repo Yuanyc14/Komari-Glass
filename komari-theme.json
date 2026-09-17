@@ -2,7 +2,7 @@
   "name": "Komari Glass",
   "short": "Glass",
   "description": "一个轻量的Komari主题。",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "author": "mengying",
   "url": "https://github.com/imengying/Komari-Glass",
   "preview": "dist/preview.png",
@@ -17,6 +17,32 @@
           "en": "Appearance"
         },
         "type": "title"
+      },
+      {
+        "key": "textDarkness",
+        "name": {
+          "zh-CN": "文字对比度增强程度 (%)",
+          "en": "Text Contrast Boost (%)"
+        },
+        "type": "number",
+        "default": 70,
+        "help": {
+          "zh-CN": "范围 0–100；浅色模式向纯黑增强，深色模式向纯白增强。切换显示模式不会改变该设置，状态颜色不受影响。",
+          "en": "Range 0–100. Text moves toward black in light mode and white in dark mode. Switching appearance does not change this setting or status colors."
+        }
+      },
+      {
+        "key": "enableTextBold",
+        "name": {
+          "zh-CN": "字体加粗",
+          "en": "Bold Text"
+        },
+        "type": "switch",
+        "default": false,
+        "help": {
+          "zh-CN": "开启后统一加粗普通文字；标题原有粗细层级保持不变。",
+          "en": "Bold regular text while preserving the existing heading hierarchy."
+        }
       },
       {
         "key": "defaultAppearance",
@@ -66,19 +92,6 @@
         "help": {
           "zh-CN": "范围 0–100；数值越低越通透。统一调整总览、服务器卡片和内部信息块。",
           "en": "Range 0–100. Lower values are more transparent and apply to overview, server cards, and inner panels."
-        }
-      },
-      {
-        "key": "textDarkness",
-        "name": {
-          "zh-CN": "浅色模式文字加深程度 (%)",
-          "en": "Light Mode Text Darkness (%)"
-        },
-        "type": "number",
-        "default": 70,
-        "help": {
-          "zh-CN": "范围 0–100；0 保持原始文字颜色，100 接近纯黑。仅加深浅色模式的主文字和次要文字，不改变深色模式及状态颜色。",
-          "en": "Range 0–100. Zero keeps the original colors; 100 approaches black. Only affects primary and secondary text in light mode."
         }
       },
       {
@@ -224,3 +237,4 @@
     ]
   }
 }
+
