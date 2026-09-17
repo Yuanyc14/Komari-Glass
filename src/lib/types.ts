@@ -6,6 +6,7 @@ export interface ThemeSettings {
   enableBlur?: boolean;
   glassOpacity?: number;
   textDarkness?: number;
+  enableTextBold?: boolean;
   backgroundImage?: string;
   showStatsBar?: boolean;
   showOnline?: boolean;
@@ -178,3 +179,4 @@ export type Route =
   | { name: "home" }
   | { name: "instance"; uuid: string }
   | { name: "not-found" };
+
