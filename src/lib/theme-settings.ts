@@ -13,6 +13,7 @@ const DEFAULT_THEME_SETTINGS: Required<
     | "enableBlur"
     | "glassOpacity"
     | "textDarkness"
+    | "enableTextBold"
     | "backgroundImage"
     | "showStatsBar"
     | "showOnline"
@@ -30,6 +31,7 @@ const DEFAULT_THEME_SETTINGS: Required<
   enableBlur: true,
   glassOpacity: 60,
   textDarkness: 70,
+  enableTextBold: false,
   backgroundImage: "",
   showStatsBar: true,
   showOnline: true,
@@ -65,6 +67,10 @@ export function mergeThemeSettings(
     textDarkness: percent(
       src.textDarkness,
       DEFAULT_THEME_SETTINGS.textDarkness
+    ),
+    enableTextBold: bool(
+      src.enableTextBold,
+      DEFAULT_THEME_SETTINGS.enableTextBold
     ),
     backgroundImage: String(
       src.backgroundImage ?? DEFAULT_THEME_SETTINGS.backgroundImage
@@ -130,3 +136,4 @@ export function resolveBackground(
 }
 
 export const APPEARANCE_KEY = "appearance";
+
