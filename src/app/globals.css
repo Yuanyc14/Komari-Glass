@@ -105,9 +105,22 @@ body {
   color: var(--foreground);
   background: transparent;
   font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   isolation: isolate;
   text-rendering: optimizeLegibility;
+}
+
+html[data-text-bold="on"] body {
+  font-weight: 600;
+}
+
+html[data-text-bold="on"] .font-medium {
+  font-weight: 650;
+}
+
+html[data-text-bold="on"] :where(.font-semibold, .font-bold) {
+  font-weight: 700;
 }
 
 #theme-background {
@@ -502,3 +515,4 @@ html[data-blur="on"] .node-offline-overlay {
     background: color-mix(in srgb, var(--node-card-bg) 94%, var(--background));
   }
 }
+
