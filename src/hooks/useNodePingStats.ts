@@ -63,12 +63,6 @@ const cache = new Map<string, CacheEntry>();
 
 const PING_SLOTS = [
   {
-    key: "telecom",
-    label: "电信",
-    color: "#fb7185",
-    aliases: ["电信", "chinatelecom", "telecom", "ctcc"],
-  },
-  {
     key: "mobile",
     label: "移动",
     color: "#34d399",
@@ -79,6 +73,12 @@ const PING_SLOTS = [
     label: "联通",
     color: "#60a5fa",
     aliases: ["联通", "chinaunicom", "unicom", "cucc"],
+  },
+  {
+    key: "telecom",
+    label: "电信",
+    color: "#fb7185",
+    aliases: ["电信", "chinatelecom", "telecom", "ctcc"],
   },
 ] as const;
 

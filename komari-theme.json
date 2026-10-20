@@ -2,7 +2,7 @@
   "name": "Komari Glass",
   "short": "Glass",
   "description": "一个轻量的Komari主题。",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "author": "mengying",
   "url": "https://github.com/imengying/Komari-Glass",
   "preview": "dist/preview.png",
@@ -123,8 +123,8 @@
         "type": "switch",
         "default": false,
         "help": {
-          "zh-CN": "开启后分别显示电信、移动、联通延迟与丢包；关闭时显示平均延迟与丢包。",
-          "en": "Show carrier-specific latency and loss; when disabled, show aggregate latency and loss."
+          "zh-CN": "开启后按移动、联通、电信顺序显示三网延迟与丢包；关闭时显示平均延迟与丢包。",
+          "en": "Show carrier-specific latency and loss in Mobile, Unicom, Telecom order; when disabled, show aggregate latency and loss."
         }
       },
       {
